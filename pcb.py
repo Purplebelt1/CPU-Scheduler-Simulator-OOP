@@ -35,7 +35,7 @@ class PCB:
     def getCPU_burst(self):
         return self.cpu_burst
 
-    def setCPU_burst(self, cpu_burst)
+    def setCPU_burst(self, cpu_burst):
         self.cpu_burst = cpu_burst
     
     def getArrival_time(self):
