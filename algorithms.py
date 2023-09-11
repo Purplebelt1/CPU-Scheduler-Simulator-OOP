@@ -8,7 +8,7 @@ def first_come_first_serve(ready_queue):
         return sorted_queue
 
 def shortest_job_first(ready_queue):
-    sorted_queue = sorted(ready_queue,  key=lambda pcb: pcb.getBurst_time)
+    sorted_queue = sorted(ready_queue,  key=lambda pcb: pcb.getCPU_burst)
     if len(sorted_queue) == 0:
         return None
     else:
