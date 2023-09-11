@@ -1,6 +1,6 @@
 class PCB:
     def __init__(self, pid, cpu_burst, 
-                 arrival_time, priority=None):
+                 arrival_time, last_run, priority=None):
         if type(pid) != int:
              raise ValueError("PID must be an integer") 
         self.pid = int(pid)
@@ -12,7 +12,11 @@ class PCB:
         if type(arrival_time) != int:
              raise ValueError("Arrival time must be an integer") 
         self.arrival_time = int(arrival_time)
-        
+
+        if type(last_run) != int:
+             raise ValueError("Last run must be an integer") 
+        self.last_run = int(last_run)
+                     
         if priority is not None and type(priority) != int:
              raise ValueError("Priority must be an integer") 
         self.priority = priority
@@ -40,6 +44,9 @@ class PCB:
     
     def getArrival_time(self):
         return self.arrival_time
+
+    def getLast_run(self):
+        return self.last_run
     
     def getPriority(self):
         return self.priority
