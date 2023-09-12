@@ -1,5 +1,5 @@
 from pcb import PCB
-from algorithms import shortest_job_first, first_come_first_serve, round_robin
+from algorithms import shortest_job_first, first_come_first_serve, round_robin, priority
 from output import append_to_txt_file
 
 class Scheduler:
