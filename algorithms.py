@@ -5,7 +5,7 @@ from pcb import PCB
 def priority(ready_queue):
     if len(ready_queue) == 0:
         return None
-    sorted_queue = sorted(ready_queue, key=lambda pcb: pcb.getPriority_time)
+    sorted_queue = sorted(ready_queue, key=lambda pcb: pcb.getPriority_time())
     return sorted_queue
 
 =======
@@ -15,25 +15,16 @@ from pcb.py import PCB
 def first_come_first_serve(ready_queue):
     if len(ready_queue) == 0:
         return None
-    sorted_queue = sorted(ready_queue, key=lambda pcb: pcb.getArrival_time)
+    sorted_queue = sorted(ready_queue, key=lambda pcb: pcb.getArrival_time())
     return sorted_queue
 
-def shortest_job_first(ready_queue, type = "NPR"):
+def shortest_job_first(ready_queue):
     # Please remove type. Scheduler handles that. All I need is the returned queue.
-    if(type == "NPR"):
-        sorted_queue = sorted(ready_queue,  key=lambda pcb: pcb.getCPU_burst)
+        sorted_queue = sorted(ready_queue,  key=lambda pcb: pcb.getCPU_burst())
         if len(sorted_queue) == 0:
             return None
         else:
             return sorted_queue
-    elif(type == "PRE"):
-        sorted_queue = sorted(ready_queue,  key=lambda pcb: pcb.getCPU_burst)
-        if len(sorted_queue) == 0:
-            return None
-        if(sorted_queue[0].getCPU_burst > pcb.getCPU_burst in sorted_queue):
-            sorted_queue = sorted(ready_queue,  key=lambda pcb: pcb.getCPU_burst)
-        return sorted_queue
-    raise Exception("Type is not supported")
             
 
 def round_robin(ready_queue, algorithm):
@@ -43,19 +34,25 @@ def round_robin(ready_queue, algorithm):
   # (For this case all we need to worry about is if there are multiple pcbs with a last_run of -1)
   # The primary sort is by last_run for the pcb. Your secodary sort is by fcfs or sjf. This should only be for if you have multiple -1
   # last_run pcbs
-    if algorithm == "fcfs":
-        sorted_queue = first_come_first_serve(ready_queue)
-    elif algorithm == "sjf":
-        sorted_queue = shortest_job_first(ready_queue)
-    else:
-        raise Exception("Algorithm type not supported")
-    time_slot = 1
-    running_pcb = None
-    while len(sorted_queue) > 0:
-        running_pcb = sorted_queue[0]
-        if(running_pcb.getCPU_burst <= time_slot):
-            running_pcb.setCPU_burst(0)
-            sorted_queue.pop(0)
-    
-    return None
 
+    primary_sort = sorted(ready_queue, key = lambda pcb: pcb.getLast_run())
+    secondary_sort = []
+    for i in primary_sort:
+        if i.getLast_run() == -1:
+            secondary_sort.append(i)
+        else:
+            break
+
+    if algorithm == "FCFS":
+         secondary_sort = first_come_first_serve(secondary_sort)
+    elif algorithm == "SJF":
+        secondary_sort = shortest_job_first(secondary_sort)
+    else:
+        raise Exception("Algorithm is not supported")
+    final_sort = secondary_sort + primary_sort[len(secondary_sort):]
+
+    return final_sort
+    
+        
+    
+    
