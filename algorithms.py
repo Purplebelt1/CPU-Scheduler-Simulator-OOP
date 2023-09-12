@@ -1,5 +1,6 @@
 from pcb import PCB
 
+
 def priority(ready_queue):
     if len(ready_queue) == 0:
         return None
@@ -28,8 +29,7 @@ def shortest_job_first(ready_queue, type = "NPR"):
         if(sorted_queue[0].getCPU_burst > pcb.getCPU_burst in sorted_queue):
             sorted_queue = sorted(ready_queue,  key=lambda pcb: pcb.getCPU_burst)
         return sorted_queue
-    else:
-        raise Exception("Type is not supported")
+    raise Exception("Type is not supported")
             
 
 def round_robin(ready_queue, algorithm):
