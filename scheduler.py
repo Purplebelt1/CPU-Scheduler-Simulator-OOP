@@ -11,6 +11,11 @@ class Scheduler:
         self.__runtime = 0
         self.__runing_process = None
 
+        append_to_txt_file("./output/all_stats.txt", ["Process-ID,", "Wait Time", "Response Time", "Turnaround Time"])
+        append_to_txt_file("./output/wait_time.txt", ["Process-ID,", "Wait Time"])
+        append_to_txt_file("./output/schedule.txt", ["Time slot", "Process ID", "CPU Burst"])
+
+
 
     def sortReadyQueue(self):
         match self.__algorithm:
