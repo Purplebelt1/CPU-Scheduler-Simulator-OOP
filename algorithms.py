@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from pcb import PCB
 
 
@@ -7,6 +8,9 @@ def priority(ready_queue):
     sorted_queue = sorted(ready_queue, key=lambda pcb: pcb.getPriority_time)
     return sorted_queue
 
+=======
+from pcb.py import PCB
+>>>>>>> 0e5f245886899bbaa39870269aa57385cce3dfe9
 
 def first_come_first_serve(ready_queue):
     if len(ready_queue) == 0:
@@ -40,11 +44,18 @@ def round_robin(ready_queue, algorithm):
   # The primary sort is by last_run for the pcb. Your secodary sort is by fcfs or sjf. This should only be for if you have multiple -1
   # last_run pcbs
     if algorithm == "fcfs":
-        first_come_first_serve(ready_queue)
+        sorted_queue = first_come_first_serve(ready_queue)
     elif algorithm == "sjf":
-        shortest_job_first(ready_queue)
+        sorted_queue = shortest_job_first(ready_queue)
     else:
         raise Exception("Algorithm type not supported")
+    time_slot = 1
+    running_pcb = None
+    while len(sorted_queue) > 0:
+        running_pcb = sorted_queue[0]
+        if(running_pcb.getCPU_burst <= time_slot):
+            running_pcb.setCPU_burst(0)
+            sorted_queue.pop(0)
     
     return None
 
