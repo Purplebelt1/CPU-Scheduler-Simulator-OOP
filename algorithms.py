@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from pcb import PCB
 
 
@@ -8,9 +7,6 @@ def priority(ready_queue):
     sorted_queue = sorted(ready_queue, key=lambda pcb: pcb.getPriority_time())
     return sorted_queue
 
-=======
-from pcb.py import PCB
->>>>>>> 0e5f245886899bbaa39870269aa57385cce3dfe9
 
 def first_come_first_serve(ready_queue):
     if len(ready_queue) == 0:
