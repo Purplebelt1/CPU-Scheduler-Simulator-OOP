@@ -31,9 +31,9 @@ def round_robin(ready_queue, algorithm):
         else:
             break
 
-    if algorithm == "FCFS":
+    if algorithm == "fcfs":
          secondary_sort = first_come_first_serve(secondary_sort)
-    elif algorithm == "SJF":
+    elif algorithm == "sjf":
         secondary_sort = shortest_job_first(secondary_sort)
     else:
         raise Exception("Algorithm is not supported")
