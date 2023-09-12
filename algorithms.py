@@ -1,4 +1,4 @@
-import PCB from pcb.py
+from pcb.py import PCB
 
 def first_come_first_serve(ready_queue):
     sorted_queue = sorted(ready_queue, key=lambda pcb: pcb.getArrival_time)
