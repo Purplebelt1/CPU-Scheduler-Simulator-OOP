@@ -1,0 +1,4 @@
+<configuration>
+    <algorithm>sjf-pr</algorithm>
+    <trace_file_path>./input/trace.txt</trace_file_path>
+</configuration>

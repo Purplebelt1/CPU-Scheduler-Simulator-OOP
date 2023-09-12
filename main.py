@@ -16,3 +16,5 @@ if __name__ == "__main__":
         traces_txt = Text.reader(traces_file, delimiter=",")
         for row in traces_txt:
             traces.append(PCB(*row))
+    
+    
