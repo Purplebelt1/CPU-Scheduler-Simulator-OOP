@@ -1,5 +1,5 @@
 <configuration>
-    <algorithm>rr-priority</algorithm>
+    <algorithm>fcfs</algorithm>
     <trace_file_path>./input/trace.txt</trace_file_path>
     <time_slice>3</time_slice>
 </configuration>
