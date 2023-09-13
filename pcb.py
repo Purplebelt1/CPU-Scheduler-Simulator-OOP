@@ -1,23 +1,20 @@
 class PCB:
     def __init__(self, pid, cpu_burst, 
                  arrival_time, priority=None):
-        if type(pid) != int:
-             raise ValueError("PID must be an integer") 
-        self.pid = int(pid)
-
-        if type(cpu_burst) != int:
-             raise ValueError("CPU burst must be an integer") 
-        self.cpu_burst = int(cpu_burst)
-
-        self.original_cpu_burst = int(cpu_burst)
+        try:
+            self.pid = int(pid)
+            self.cpu_burst = int(cpu_burst)
+            self.original_cpu_burst = int(cpu_burst)
+            self.arrival_time = int(arrival_time)
+            if priority:
+                self.priority = int(priority)
+            else:
+                self.priority = None
+        except:
+            raise ValueError("All fields (PID, arrival time, burst time, and priority) must be integers")
         
-        if type(arrival_time) != int:
-             raise ValueError("Arrival time must be an integer") 
-        self.arrival_time = int(arrival_time)
-                     
-        if priority is not None and type(priority) != int:
-             raise ValueError("Priority must be an integer") 
-        self.priority = priority
+        if self.cpu_burst < 1:
+            raise ValueError("CPU Burst must be greater than 0. Check trace.txt")
 
         self.first_run = None
         
