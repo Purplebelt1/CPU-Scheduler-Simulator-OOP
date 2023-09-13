@@ -12,7 +12,7 @@ def first_come_first_serve(ready_queue):
     # Sort the ready queue based on arrival time in ascending order (First Come First Serve)
     if len(ready_queue) == 0:
         return None  # Return None if the queue is empty
-    sorted_queue = sorted(ready_queue, key=lambda pcb: pcb.getArrival_time())
+    sorted_queue = sorted(ready_queue, key=lambda pcb: (pcb.getArrival_time(), -pcb.getLast_run()))
     return sorted_queue  # Return the sorted queue
 
 def shortest_job_first(ready_queue):
